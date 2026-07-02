@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Prezent</title>
 
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff9ec4,#ffd6e8);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+#gift{
+font-size:120px;
+cursor:pointer;
+transition:.3s;
+}
+
+#gift:hover{
+transform:scale(1.1);
+}
+
+#photo{
+display:none;
+max-width:90%;
+max-height:80%;
+border-radius:20px;
+box-shadow:0 0 30px rgba(0,0,0,.3);
+animation:show .8s ease;
+}
+
+#text{
+position:absolute;
+top:40px;
+font-size:30px;
+font-weight:bold;
+color:white;
+text-shadow:0 0 10px black;
+}
+
+.confetti{
+position:absolute;
+font-size:25px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px);}
+100%{transform:translateY(110vh) rotate(720deg);}
+}
+
+@keyframes show{
+from{transform:scale(.2);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="text">🎁 Kliknij prezent 🎁</div>
+
+<div id="gift">🎁</div>
+
+<img id="photo" src="photo.jpg.JPG">
+
+<script>
+
+const gift=document.getElementById("gift");
+const photo=document.getElementById("photo");
+const text=document.getElementById("text");
+
+gift.onclick=()=>{
+
+gift.style.display="none";
+photo.style.display="block";
+text.innerHTML="❤️ Niespodzianka ❤️";
+
+for(let i=0;i<120;i++){
+
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML=Math.random()>0.5?"🎉":"❤️";
+
+c.style.left=Math.random()*100+"vw";
+c.style.animationDelay=Math.random()+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),3000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
